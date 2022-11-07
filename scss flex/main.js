@@ -1,11 +1,19 @@
-let d = new Date();
-let yts = d.setHours(0,0,0,0) - 24*3600*1000;
+var prevScrollpos = window.pageYOffset;
+var doc = document.getElementById("navbar")
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
 
-$("#datepicker").datepicker({
-    beforShowDay: function(d){
-        if(d.getTime() == yts){
-            return[true,'wow','hey'];
-        }
-        return[true];
-    }
-})
+  if(currentScrollPos > 20){
+    doc.style.top = "-50px";
+  }
+  else{
+    doc.style.top = "0";
+    doc.classList.remove("navmenu");
+  }
+  if(currentScrollPos > 100){
+    doc.style.top = "0";
+    doc.classList.add("navmenu");
+  }
+  console.log(currentScrollPos)
+  prevScrollpos = currentScrollPos;
+}
